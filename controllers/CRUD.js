@@ -43,8 +43,14 @@ export const updateOne = asyncWrapper(async (req, res, next) => {
     body,
   } = req;
 
+  const hooks = req.model.options?.hooks || {};
+  const hasUpdateHooks =
+    (hooks.beforeUpdate?.length ?? 0) > 0 ||
+    (hooks.afterUpdate?.length ?? 0) > 0;
+
   const [updated] = await req.model.update(body, {
     where: { id },
+    individualHooks: hasUpdateHooks,
   });
 
   if (!updated) {
