@@ -68,6 +68,9 @@ export default (sequelize) => {
         afterCreate: (user) => {
           delete user.dataValues.password;
         },
+        beforeFind: ({ where }) => {
+          if (where?.email) where.email = where.email.toLowerCase();
+        },
       },
     }
   );
