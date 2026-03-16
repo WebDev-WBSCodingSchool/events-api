@@ -9,7 +9,7 @@
     "seed": "node seed.js"
   },
   "dependencies": {
-    "@sequelize/sqlite3": "^7.0.0-alpha.46",
+    "@sequelize/sqlite3": "^7.0.0-alpha.48",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",

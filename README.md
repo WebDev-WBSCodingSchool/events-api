@@ -79,3 +79,23 @@ To populate the database with initial data, run the following command:
 ```bash
 npm run seed
 ```
+
+## Docker
+
+### Build and run locally
+
+```bash
+docker build -t events-api .
+docker run -p 3001:3001 -e JWT_SECRET=yourSecret -v events-db:/app/data events-api
+```
+
+Set `PORT`, `JWT_SECRET`, and `ENVIRONMENT` via `-e` as needed. Use `-v events-db:/app/data` to persist the SQLite database.
+
+### Run image from GitHub Container Registry (GHCR)
+
+After the repo is pushed to GitHub, the **Docker publish to GHCR** workflow builds and pushes the image on every push to `main`. Use your GitHub org/repo name:
+
+```bash
+docker pull ghcr.io/WebDev-WBSCodingSchool/events-api:latest
+docker run -p 3001:3001 -e JWT_SECRET=yourSecret -v events-db:/app/data ghcr.io/WebDev-WBSCodingSchool/events-api:latest
+```

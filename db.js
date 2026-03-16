@@ -5,7 +5,7 @@ import EventModel from "./models/events.js";
 
 const sequelize = new Sequelize({
   dialect: "sqlite",
-  storage: "./db.db",
+  storage: process.env.DB_STORAGE || "./db.db",
   logging: false,
 });
 
