@@ -74,11 +74,13 @@ Create a new `.env` file and then copy the contents of `example.env` into it, yo
 
 ## Database Seeding
 
-To populate the database with initial data, run the following command:
+To populate the database with initial data, run:
 
 ```bash
 npm run seed
 ```
+
+Seeding runs **only once**: if users already exist, it skips and does not overwrite data. To reset and re-seed (drops all tables, then inserts seed data), use `SEED_FORCE=true npm run seed`.
 
 ## Docker
 

@@ -23,4 +23,5 @@ EXPOSE ${PORT}
 # Run as non-root
 USER node
 
-CMD ["node", "index.js"]
+# Run seed once on startup (idempotent), then start the server
+CMD ["sh", "-c", "node seed.js && exec node index.js"]
