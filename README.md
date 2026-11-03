@@ -46,6 +46,17 @@ Environment-specific configurations can be set in `.env` file. take a look at th
 
 Create a new `.env` file and then copy the contents of `example.env` into it, you may change the `JWT_SECRET` and `PORT` values.
 
+### Practising failure handling
+
+Two optional settings make the API fail on purpose. They are off unless you set them, and they only affect routes under `/api`.
+
+| Setting | Value | Effect |
+| --- | --- | --- |
+| `RATE_LIMIT_PER_MINUTE` | whole number, 1 or more | Requests above this number in a one-minute window get `429` and a `Retry-After` header. |
+| `FAIL_EVERY_N_REQUESTS` | whole number, 2 or more | Every Nth request gets `503` before it reaches the database, so nothing is written. |
+
+If a value is missing or invalid, that setting stays off. Requests rejected with `429` do not count towards `FAIL_EVERY_N_REQUESTS`.
+
 ## Database Seeding
 
 To populate the database with initial data, run:

@@ -6,6 +6,7 @@ import './db.js';
 import router from './routes/index.js';
 import { setupSwagger } from './swagger.js';
 import { errorHandler } from './middlewares/errorHandler.js';
+import { practiceFailures } from './middlewares/practiceFailures.js';
 
 const app = express();
 const PORT = process.env.PORT ?? 3001;
@@ -19,7 +20,7 @@ if (!isProduction) {
   setupSwagger(app, PORT);
 }
 
-app.use('/api', router);
+app.use('/api', practiceFailures(), router);
 app.use(errorHandler);
 
 app.listen(PORT, () => {
